@@ -35,11 +35,11 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public Product update(String id,Product oldProduct) {
+    public Optional<Product> update(String id, Product oldProduct) {
         Product newProduct=this.productDAO.findById(id).get();
         newProduct.setTitle(oldProduct.getTitle());
         newProduct.setPrice(oldProduct.getPrice());
-        return this.productDAO.save(newProduct);
+        return Optional.of(this.productDAO.save(newProduct));
     }
 
     @Override
